@@ -9,6 +9,7 @@ This project uses dependencies like:
 - [Confetti](https://pub.dev/packages/confetti)
 - [FontAwesome](https://pub.dev/packages/font_awesome_flutter)
 - [Google Fonts](https://pub.dev/packages/google_fonts)
+- [Fluttertoast](https://pub.dev/packages/fluttertoast)
 
 For state management the Quiz App uses:
 

@@ -16,7 +16,7 @@ class AppBottomNav extends StatefulWidget {
 
 class _AppBottomNavState extends State<AppBottomNav> {
   int appIndex = 0;
-  final appScreens = [const HomeView(), NewQuizView()];
+  final appScreens = [HomeView(), NewQuizView()];
 
   DateTime backButtonPressed = DateTime.now();
 
@@ -69,7 +69,7 @@ class _AppBottomNavState extends State<AppBottomNav> {
                 label: bottomNav.home),
             BottomNavigationBarItem(
                 icon: const FaIcon(
-                  FontAwesomeIcons.edit,
+                  FontAwesomeIcons.penToSquare,
                   size: 20,
                 ),
                 label: bottomNav.addQuiz),

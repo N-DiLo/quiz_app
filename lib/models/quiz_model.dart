@@ -17,7 +17,7 @@ class QuizList with ChangeNotifier {
 
 class QuizCategory with ChangeNotifier {
   final String catName;
-  final String cate_Image;
+  final String catImages;
 
-  QuizCategory({required this.catName, required this.cate_Image});
+  QuizCategory({required this.catName, required this.catImages});
 }

@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_app/components/app_bottom_nav.dart';
 import 'package:quiz_app/components/app_colors.dart';
 import 'package:quiz_app/components/app_images.dart';
 import 'package:quiz_app/components/app_text.dart';
+import 'package:quiz_app/utils/navigator_utils.dart';
 import 'package:quiz_app/view_models/splash_view_model.dart';
 
 class SplashView extends StatefulWidget {
@@ -27,8 +26,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   route() async {
-    Navigator.pushReplacement(
-        context, CupertinoPageRoute(builder: (_) => const AppBottomNav()));
+    startApp(context);
   }
 
   var splashValues = SplashModel();

@@ -1,21 +1,19 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/components/app_colors.dart';
 import 'package:quiz_app/components/app_text.dart';
+import 'package:quiz_app/utils/navigator_utils.dart';
 import 'package:quiz_app/view_models/home_view_model.dart';
 import 'package:quiz_app/view_models/quiz_categories_model.dart';
-import 'package:quiz_app/views/quiz_view.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+class HomeView extends StatelessWidget {
+  HomeView({super.key});
 
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
   var homeValues = HomeViewModel();
+
   @override
   Widget build(BuildContext context) {
     var quizCategory = Provider.of<QuizCat>(context);
@@ -126,8 +124,7 @@ class _HomeViewState extends State<HomeView> {
                     final quizCats = quizCatData[index];
                     return GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, QuizView.routeName,
-                            arguments: quizCats.catName);
+                        openQuizView(context, quizCats.catName);
                       },
                       child: Card(
                         shape: RoundedRectangleBorder(
@@ -140,7 +137,7 @@ class _HomeViewState extends State<HomeView> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
-                                  quizCats.cate_Image,
+                                  quizCats.catImages,
                                   height: mHeight * 0.08,
                                 ),
                                 SizedBox(

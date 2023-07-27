@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:quiz_app/components/app_colors.dart';
 import 'package:quiz_app/components/app_text.dart';

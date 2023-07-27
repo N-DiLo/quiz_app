@@ -90,14 +90,14 @@ class _QuizResultViewState extends State<QuizResultView> {
                 fontWeight: FontWeight.w400,
                 color: whiteColor,
               ),
-              SizedBox(height: mHeight * 0.08),
+              SizedBox(height: mHeight * 0.15),
               AppText(
                 text: qRVM.qRScore,
                 fontSize: 25,
                 fontWeight: FontWeight.w400,
                 color: whiteColor,
               ),
-              SizedBox(height: mHeight * 0.025),
+              SizedBox(height: mHeight * 0.01),
               AppText(
                 text: qRVM.qScore,
                 fontSize: 50,

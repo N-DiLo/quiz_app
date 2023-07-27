@@ -13,6 +13,8 @@ void main() {
     statusBarBrightness: Brightness.light,
     statusBarColor: Colors.transparent,
   ));
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 }
 
 class MyApp extends StatelessWidget {

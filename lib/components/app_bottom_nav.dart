@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/components/app_colors.dart';
+import 'package:quiz_app/view_models/bottom_nav_model.dart';
 import 'package:quiz_app/views/home_view.dart';
 import 'package:quiz_app/views/new_quiz_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,9 +16,11 @@ class AppBottomNav extends StatefulWidget {
 
 class _AppBottomNavState extends State<AppBottomNav> {
   int appIndex = 0;
-  final appScreens = [const HomeView(), const NewQuizView()];
+  final appScreens = [const HomeView(), NewQuizView()];
 
   DateTime backButtonPressed = DateTime.now();
+
+  final bottomNav = BottomNavModel();
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +30,10 @@ class _AppBottomNavState extends State<AppBottomNav> {
         final exitWarning = timePressed >= const Duration(seconds: 2);
         backButtonPressed = DateTime.now();
 
+        final String exitMessage;
+
         if (exitWarning) {
-          const exitMessage = 'Click again to exit';
+          exitMessage = bottomNav.exit;
 
           Fluttertoast.showToast(
               msg: exitMessage,
@@ -55,19 +60,19 @@ class _AppBottomNavState extends State<AppBottomNav> {
           selectedItemColor: kcPrimaryColor,
           currentIndex: appIndex,
           onTap: (index) => setState(() => appIndex = index),
-          items: const [
+          items: [
             BottomNavigationBarItem(
-                icon: FaIcon(
+                icon: const FaIcon(
                   FontAwesomeIcons.house,
                   size: 20,
                 ),
-                label: 'Home'),
+                label: bottomNav.home),
             BottomNavigationBarItem(
-                icon: FaIcon(
+                icon: const FaIcon(
                   FontAwesomeIcons.edit,
                   size: 20,
                 ),
-                label: 'Add New Quiz'),
+                label: bottomNav.addQuiz),
           ],
         ),
       ),

@@ -3,7 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/components/app_colors.dart';
 import 'package:quiz_app/components/app_text.dart';
-import 'package:quiz_app/models/quiz_categories.dart';
+import 'package:quiz_app/view_models/home_view_model.dart';
+import 'package:quiz_app/view_models/quiz_categories_model.dart';
 import 'package:quiz_app/views/quiz_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -14,6 +15,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  var homeValues = HomeViewModel();
   @override
   Widget build(BuildContext context) {
     var quizCategory = Provider.of<QuizCat>(context);
@@ -35,17 +37,17 @@ class _HomeViewState extends State<HomeView> {
           ),
         ),
         titleSpacing: mWidth * 0.001,
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppText(
-              text: 'Welcome',
+              text: homeValues.appBarMsg,
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: whiteColor,
             ),
             AppText(
-              text: 'How are you today?',
+              text: homeValues.appBarGrt,
               fontSize: 11,
               fontWeight: FontWeight.w300,
               color: whiteColor,
@@ -71,25 +73,24 @@ class _HomeViewState extends State<HomeView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const AppText(
-                    text: '?',
+                  AppText(
+                    text: homeValues.contMrk,
                     fontSize: 120,
                     fontWeight: FontWeight.w700,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const AppText(
-                        text: 'Play &\nWin',
+                      AppText(
+                        text: homeValues.contWin,
                         fontSize: 30,
                         fontWeight: FontWeight.w900,
                         color: kcPrimaryColor,
                       ),
                       SizedBox(height: mHeight * 0.015),
-                      const AppText(
+                      AppText(
                         softWrap: true,
-                        text:
-                            'Hosting a quiz is a fun way\nto engage and energize you.',
+                        text: homeValues.contMsg,
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
                         color: kcPrimaryColor,
@@ -102,8 +103,8 @@ class _HomeViewState extends State<HomeView> {
             SizedBox(
               height: mHeight * 0.026,
             ),
-            const AppText(
-              text: 'Quiz Categories',
+            AppText(
+              text: homeValues.catHome,
               fontSize: 20,
               color: whiteColor,
               fontWeight: FontWeight.w700,

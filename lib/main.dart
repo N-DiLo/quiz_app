@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:quiz_app/models/quiz_categories.dart';
-import 'package:quiz_app/models/quiz_questions.dart';
+import 'package:quiz_app/view_models/quiz_categories_model.dart';
+import 'package:quiz_app/view_models/quiz_questions_model.dart';
 import 'package:quiz_app/views/quiz_view.dart';
 import '../views/splash_view.dart';
 

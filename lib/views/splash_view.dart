@@ -5,6 +5,7 @@ import 'package:quiz_app/components/app_bottom_nav.dart';
 import 'package:quiz_app/components/app_colors.dart';
 import 'package:quiz_app/components/app_images.dart';
 import 'package:quiz_app/components/app_text.dart';
+import 'package:quiz_app/view_models/splash_view_model.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -30,6 +31,7 @@ class _SplashViewState extends State<SplashView> {
         context, CupertinoPageRoute(builder: (_) => const AppBottomNav()));
   }
 
+  var splashValues = SplashModel();
   @override
   Widget build(BuildContext context) {
     final mHeight = MediaQuery.of(context).size.height;
@@ -52,8 +54,8 @@ class _SplashViewState extends State<SplashView> {
             SizedBox(
               height: mHeight * 0.01,
             ),
-            const AppText(
-              text: 'Loading...',
+            AppText(
+              text: splashValues.loadingTxt,
               fontSize: 13,
               fontWeight: FontWeight.w500,
               color: kcPrimaryColor,

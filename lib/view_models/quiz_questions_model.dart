@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:quiz_app/components/app_images.dart';
-import 'quiz_model.dart';
+import '../models/quiz_model.dart';
 
 class QuizQuestions with ChangeNotifier {
   final List<QuizList> questions = [
@@ -150,7 +150,7 @@ class QuizQuestions with ChangeNotifier {
     ),
     QuizList(
       question: 'What is the world’s best-selling stout beer?',
-      category: 'Food Quiz',
+      category: 'Food & Drinks Quiz',
       catImage: foodCategory,
       options: [
         'Guinness',
@@ -162,7 +162,7 @@ class QuizQuestions with ChangeNotifier {
     ),
     QuizList(
       question: 'Where did sushi originate?',
-      category: 'Food Quiz',
+      category: 'Food & Drinks Quiz',
       catImage: foodCategory,
       options: [
         'Japan',
@@ -174,7 +174,7 @@ class QuizQuestions with ChangeNotifier {
     ),
     QuizList(
       question: 'Which of the following sauces is NOT traditionally vegan?',
-      category: 'Food Quiz',
+      category: 'Food & Drinks Quiz',
       catImage: foodCategory,
       correctAnswer: 2,
       options: [
@@ -198,7 +198,7 @@ class QuizQuestions with ChangeNotifier {
     ),
     QuizList(
       question: 'How many stars are on the Chinese flag?',
-      category: 'Food Quiz',
+      category: 'Geography Quiz',
       catImage: geoCategory,
       options: [
         '6',
@@ -210,7 +210,7 @@ class QuizQuestions with ChangeNotifier {
     ),
     QuizList(
       question: 'How many colors are used in the South African flag?',
-      category: 'Food Quiz',
+      category: 'Geography Quiz',
       catImage: geoCategory,
       correctAnswer: 2,
       options: [

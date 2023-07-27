@@ -45,20 +45,29 @@ class _AppBottomNavState extends State<AppBottomNav> {
       child: Scaffold(
         body: appScreens[appIndex],
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: kcPrimaryColor,
+          elevation: 3,
+          backgroundColor: kcSplashColor,
           unselectedLabelStyle: GoogleFonts.quicksand(),
           selectedLabelStyle: GoogleFonts.quicksand(),
-          unselectedFontSize: 13,
+          unselectedFontSize: 11,
           unselectedItemColor: kcLightColor,
           selectedFontSize: 13,
-          selectedItemColor: kcSplashColor,
+          selectedItemColor: kcPrimaryColor,
           currentIndex: appIndex,
           onTap: (index) => setState(() => appIndex = index),
           items: const [
             BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.house), label: 'Home'),
+                icon: FaIcon(
+                  FontAwesomeIcons.house,
+                  size: 20,
+                ),
+                label: 'Home'),
             BottomNavigationBarItem(
-                icon: FaIcon(FontAwesomeIcons.edit), label: 'Add New Quiz'),
+                icon: FaIcon(
+                  FontAwesomeIcons.edit,
+                  size: 20,
+                ),
+                label: 'Add New Quiz'),
           ],
         ),
       ),

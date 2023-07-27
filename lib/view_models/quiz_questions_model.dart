@@ -222,7 +222,28 @@ class QuizQuestions with ChangeNotifier {
     ),
   ];
 
-  List<QuizList> get quest {
+  List<QuizList> get quizQuestion {
     return [...questions];
+  }
+
+  int? selectedAnswer;
+  int questionIndex = 0;
+  int score = 0;
+
+  void pickAnswer(int value) {
+    selectedAnswer = value;
+    final appQuiz = quizQuestion[questionIndex];
+    if (selectedAnswer == appQuiz.correctAnswer) {
+      score++;
+    }
+    notifyListeners();
+  }
+
+  void goToNextQuestion() {
+    if (questionIndex < quizQuestion.length - 1) {
+      questionIndex++;
+      selectedAnswer = null;
+    }
+    notifyListeners();
   }
 }

@@ -8,6 +8,7 @@ class QuizViewModel extends ChangeNotifier {
   String appLstQuz = 'Finish';
   int score = 0;
 
+  bool lastQuiz = true;
   // List<QuizList> get quizQuestion {
   //   return [QuizQuestions];
   // }

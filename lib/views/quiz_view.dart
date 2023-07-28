@@ -67,7 +67,7 @@ class _QuizViewState extends State<QuizView> {
             AppText(
               textAlign: TextAlign.center,
               text:
-                  '${qVModel.qstText + quizzes.score.toString()} / ${selectedQuiz.length.toString()}',
+                  '${qVModel.qstText + quizzes.score.toString()} / ${selectedQuiz.length}',
               fontSize: 25,
               color: whiteColor,
               fontWeight: FontWeight.w700,
@@ -118,10 +118,11 @@ class _QuizViewState extends State<QuizView> {
                     ),
                   ),
                 ),
-                quizzes.isLastQuiz
+                quizzes.questionIndex == selectedQuiz.length - 1
                     ? SizedBox(
                         width: mWidth * 0.4,
                         child: AppBtn(
+                          color: kcSplashColor,
                           onTap: () => quitQuiz(context, quizzes.score),
                           child: AppText(
                             text: qVModel.appLstQuz,
@@ -136,7 +137,7 @@ class _QuizViewState extends State<QuizView> {
                         child: AppBtn(
                           onTap: quizzes.selectedAnswer != null
                               ? () =>
-                                  quizzes.goToNextQuestion(selected.question)
+                                  quizzes.goToNextQuestion(selectedQuiz.length)
                               : null,
                           color: kcSplashColor,
                           child: AppText(

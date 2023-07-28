@@ -60,26 +60,32 @@ class _QuizResultViewState extends State<QuizResultView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: mHeight * 0.03),
-              ConfettiWidget(
-                confettiController: qRVM.controller,
-                shouldLoop: true,
-                blastDirectionality: BlastDirectionality.explosive,
-                emissionFrequency: 0.06,
-                gravity: 0.3,
-                numberOfParticles: 10,
-                minBlastForce: 5,
-                maxBlastForce: 10,
-                createParticlePath: (size) {
-                  final path = Path();
+              widget.score < 2
+                  ? Image.asset(
+                      sadFace,
+                      width: mWidth * 0.45,
+                    )
+                  : ConfettiWidget(
+                      confettiController: qRVM.controller,
+                      shouldLoop: true,
+                      blastDirectionality: BlastDirectionality.explosive,
+                      emissionFrequency: 0.06,
+                      gravity: 0.3,
+                      numberOfParticles: 10,
+                      minBlastForce: 5,
+                      maxBlastForce: 10,
+                      createParticlePath: (size) {
+                        final path = Path();
 
-                  path.addRect(Rect.fromCircle(center: Offset.zero, radius: 4));
-                  return path;
-                },
-                child: Image.asset(
-                  congrats,
-                  width: mWidth * 0.45,
-                ),
-              ),
+                        path.addRect(
+                            Rect.fromCircle(center: Offset.zero, radius: 4));
+                        return path;
+                      },
+                      child: Image.asset(
+                        congrats,
+                        width: mWidth * 0.45,
+                      ),
+                    ),
               SizedBox(height: mHeight * 0.04),
               widget.score < 2
                   ? AppText(

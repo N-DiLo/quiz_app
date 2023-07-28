@@ -246,17 +246,19 @@ class QuizQuestions with ChangeNotifier {
 
   set isLastQuiz(value) => _isLastQuiz;
 
-  void goToNextQuestion(String qustn) {
-    if (questionIndex < quizQuestion.length - 1) {
-      questionIndex++;
-      selectedAnswer = null;
-    }
+  void goToNextQuestion(allQs) {
+    //if (questionIndex < quizQuestion.length - 1) {
+    // if (questionIndex < allQs - 1) {
+    questionIndex++;
+    selectedAnswer = null;
+    //}
     notifyListeners();
   }
 
   void startQuiz(context) {
     selectedAnswer = null;
     score = 0;
+    questionIndex = 0;
     Navigator.pushReplacement(
       context,
       CupertinoPageRoute(

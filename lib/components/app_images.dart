@@ -11,3 +11,6 @@ const movieCategory = 'assets/movie.png';
 
 //Congratulations Image
 const congrats = 'assets/trophy.png';
+
+//Sad Face Image
+const sadFace = 'assets/sad.png';

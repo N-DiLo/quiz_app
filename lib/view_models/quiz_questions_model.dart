@@ -233,7 +233,7 @@ class QuizQuestions with ChangeNotifier {
   int questionIndex = 0;
   int score = 0;
 
-  void pickAnswer(int value) async {
+  void pickAnswer(int value) {
     selectedAnswer = value;
     final appQuiz = quizQuestion[questionIndex];
     if (selectedAnswer == appQuiz.correctAnswer) {
@@ -248,7 +248,7 @@ class QuizQuestions with ChangeNotifier {
 
   set isLastQuiz(value) => _isLastQuiz;
 
-  void goToNextQuestion(String qustn) async {
+  void goToNextQuestion(String qustn) {
     if (questionIndex < quizQuestion.length - 1) {
       questionIndex++;
       selectedAnswer = null;
@@ -256,7 +256,7 @@ class QuizQuestions with ChangeNotifier {
     notifyListeners();
   }
 
-  void startQuiz(context) async {
+  void startQuiz(context) {
     selectedAnswer = null;
     score = 0;
     Navigator.pushReplacement(

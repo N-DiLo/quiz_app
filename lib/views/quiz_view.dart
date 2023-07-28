@@ -107,7 +107,7 @@ class _QuizViewState extends State<QuizView> {
                   width: mWidth * 0.4,
                   child: AppBtn(
                     onTap: () {
-                      quitQuiz(context, quizzes.score);
+                      quitQuiz(context);
                     },
                     color: whiteColor,
                     child: AppText(
@@ -123,7 +123,7 @@ class _QuizViewState extends State<QuizView> {
                         width: mWidth * 0.4,
                         child: AppBtn(
                           color: kcSplashColor,
-                          onTap: () => quitQuiz(context, quizzes.score),
+                          onTap: () => finishQuiz(context, quizzes.score),
                           child: AppText(
                             text: qVModel.appLstQuz,
                             fontWeight: FontWeight.w700,

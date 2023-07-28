@@ -7,12 +7,13 @@ class QuizList with ChangeNotifier {
   final String? catImage;
   final List<String> options;
 
-  QuizList(
-      {required this.question,
-      required this.category,
-      required this.correctAnswer,
-      required this.options,
-      this.catImage});
+  QuizList({
+    required this.question,
+    required this.category,
+    required this.correctAnswer,
+    required this.options,
+    this.catImage,
+  });
 }
 
 class QuizCategory with ChangeNotifier {

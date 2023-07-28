@@ -16,15 +16,16 @@ void startApp(BuildContext context) async {
 
 //Open Quiz View
 void openQuizView(BuildContext context, Object? arguments) async {
-  Navigator.pushNamed(context, QuizView.routeName, arguments: arguments);
+  Navigator.pushReplacementNamed(context, QuizView.routeName,
+      arguments: arguments);
 }
 
 //Quit Quiz View
-void quitQuiz(BuildContext context) async {
+void quitQuiz(BuildContext context, int quizScore) async {
   Navigator.pushReplacement(
     context,
     CupertinoPageRoute(
-      builder: (_) => const QuizResultView(),
+      builder: (_) => QuizResultView(score: quizScore),
     ),
   );
 }

@@ -4,9 +4,10 @@ class QuizResultViewModel {
   final controller = ConfettiController();
 
   String qRCongrats = 'CONGRATULATIONS!';
+  String betterLuck = 'YOU CAN DO BETTER';
+  String tryAgain = 'Better luck next time';
   String qRAwesome = 'You were awesome';
   String qRScore = 'YOUR SCORE';
-  String qScore = '3 / 3';
 
   String takeQuiz = 'Take New Quiz';
 }

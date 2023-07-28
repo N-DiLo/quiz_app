@@ -1,15 +1,18 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz_app/components/app_btn.dart';
 import 'package:quiz_app/components/app_colors.dart';
 import 'package:quiz_app/components/app_images.dart';
 import 'package:quiz_app/components/app_text.dart';
 import 'package:quiz_app/utils/navigator_utils.dart';
+import 'package:quiz_app/view_models/quiz_questions_model.dart';
 import 'package:quiz_app/view_models/quiz_result_view_model.dart';
 
 class QuizResultView extends StatefulWidget {
-  const QuizResultView({super.key});
+  const QuizResultView({required this.score, super.key});
+  final int score;
 
   @override
   State<QuizResultView> createState() => _QuizResultViewState();
@@ -32,6 +35,7 @@ class _QuizResultViewState extends State<QuizResultView> {
 
   @override
   Widget build(BuildContext context) {
+    final newQuiz = Provider.of<QuizQuestions>(context);
     final mHeight = MediaQuery.of(context).size.height;
     final mWidth = MediaQuery.of(context).size.width;
 
@@ -77,19 +81,33 @@ class _QuizResultViewState extends State<QuizResultView> {
                 ),
               ),
               SizedBox(height: mHeight * 0.04),
-              AppText(
-                text: qRVM.qRCongrats,
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-                color: whiteColor,
-              ),
+              widget.score < 2
+                  ? AppText(
+                      text: qRVM.betterLuck,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      color: whiteColor,
+                    )
+                  : AppText(
+                      text: qRVM.qRCongrats,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      color: whiteColor,
+                    ),
               SizedBox(height: mHeight * 0.001),
-              AppText(
-                text: qRVM.qRAwesome,
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: whiteColor,
-              ),
+              widget.score < 2
+                  ? AppText(
+                      text: qRVM.tryAgain,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      color: whiteColor,
+                    )
+                  : AppText(
+                      text: qRVM.qRAwesome,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      color: whiteColor,
+                    ),
               SizedBox(height: mHeight * 0.15),
               AppText(
                 text: qRVM.qRScore,
@@ -99,7 +117,7 @@ class _QuizResultViewState extends State<QuizResultView> {
               ),
               SizedBox(height: mHeight * 0.01),
               AppText(
-                text: qRVM.qScore,
+                text: '${widget.score} / 3',
                 fontSize: 50,
                 fontWeight: FontWeight.w700,
                 color: whiteColor,
@@ -108,7 +126,7 @@ class _QuizResultViewState extends State<QuizResultView> {
               SizedBox(
                 width: mWidth * 0.7,
                 child: AppBtn(
-                  onTap: () => takeNewQuiz(context),
+                  onTap: () => newQuiz.startQuiz(context),
                   color: kcSplashColor,
                   child: AppText(
                     text: qRVM.takeQuiz,

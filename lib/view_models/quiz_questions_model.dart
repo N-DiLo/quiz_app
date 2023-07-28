@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:quiz_app/components/app_images.dart';
+import '../components/app_bottom_nav.dart';
 import '../models/quiz_model.dart';
 
 class QuizQuestions with ChangeNotifier {
@@ -230,7 +233,7 @@ class QuizQuestions with ChangeNotifier {
   int questionIndex = 0;
   int score = 0;
 
-  void pickAnswer(int value) {
+  void pickAnswer(int value) async {
     selectedAnswer = value;
     final appQuiz = quizQuestion[questionIndex];
     if (selectedAnswer == appQuiz.correctAnswer) {
@@ -239,11 +242,30 @@ class QuizQuestions with ChangeNotifier {
     notifyListeners();
   }
 
-  void goToNextQuestion() {
+  final bool _isLastQuiz = false;
+
+  bool get isLastQuiz => _isLastQuiz;
+
+  set isLastQuiz(value) => _isLastQuiz;
+
+  void goToNextQuestion(String qustn) async {
     if (questionIndex < quizQuestion.length - 1) {
       questionIndex++;
       selectedAnswer = null;
     }
+    notifyListeners();
+  }
+
+  void startQuiz(context) async {
+    selectedAnswer = null;
+    score = 0;
+    Navigator.pushReplacement(
+      context,
+      CupertinoPageRoute(
+        builder: (_) => const AppBottomNav(),
+      ),
+    );
+
     notifyListeners();
   }
 }

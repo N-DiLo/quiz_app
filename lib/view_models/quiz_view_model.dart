@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/models/quiz_model.dart';
-import 'package:quiz_app/view_models/quiz_questions_model.dart';
 
 class QuizViewModel extends ChangeNotifier {
   String userWel = 'Play to win, and standout!';

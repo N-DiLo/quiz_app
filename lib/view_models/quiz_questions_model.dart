@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:quiz_app/components/app_images.dart';
 import '../components/app_bottom_nav.dart';
 import '../models/quiz_model.dart';

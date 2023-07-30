@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:quiz_app/components/app_images.dart';
 import '../components/app_bottom_nav.dart';
 import '../models/quiz_model.dart';
+import '../components/app_colors.dart';
+import '../components/app_text.dart';
 
 class QuizQuestions with ChangeNotifier {
   final List<QuizList> questions = [
@@ -240,18 +243,12 @@ class QuizQuestions with ChangeNotifier {
     notifyListeners();
   }
 
-  final bool _isLastQuiz = false;
-
-  bool get isLastQuiz => _isLastQuiz;
-
-  set isLastQuiz(value) => _isLastQuiz;
-
   void goToNextQuestion(allQs) {
     //if (questionIndex < quizQuestion.length - 1) {
-    // if (questionIndex < allQs - 1) {
-    questionIndex++;
-    selectedAnswer = null;
-    //}
+    if (questionIndex != allQs) {
+      questionIndex++;
+      selectedAnswer = null;
+    }
     notifyListeners();
   }
 
@@ -267,5 +264,59 @@ class QuizQuestions with ChangeNotifier {
     );
 
     notifyListeners();
+  }
+
+  void quitQuiz(BuildContext context) async {
+    showCupertinoDialog(
+      context: context,
+      builder: (ctx) => CupertinoAlertDialog(
+        title: const AppText(
+          text: 'Quit Quiz?',
+          fontSize: 17,
+          fontWeight: FontWeight.w700,
+          color: kcPrimaryColor,
+        ),
+        content: const AppText(
+          text: 'Are you sure you want to quit quiz?',
+          fontSize: 13,
+          fontWeight: FontWeight.w600,
+          color: kcPrimaryColor,
+        ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (_) => const AppBottomNav(),
+                    ),
+                  );
+
+                  selectedAnswer = null;
+                  score = 0;
+                  questionIndex = 0;
+
+                  notifyListeners();
+                },
+                child: const AppText(
+                  text: 'Yes',
+                  fontSize: 13,
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const AppText(
+                  text: 'No',
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

@@ -33,7 +33,6 @@ class _QuizViewState extends State<QuizView> {
 
     final mHeight = MediaQuery.of(context).size.height;
     final mWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -67,7 +66,7 @@ class _QuizViewState extends State<QuizView> {
             AppText(
               textAlign: TextAlign.center,
               text:
-                  '${qVModel.qstText + quizzes.score.toString()} / ${selectedQuiz.length}',
+                  '${'${qVModel.qstText}${quizzes.score}'} / ${selectedQuiz.length}',
               fontSize: 25,
               color: whiteColor,
               fontWeight: FontWeight.w700,
@@ -107,7 +106,7 @@ class _QuizViewState extends State<QuizView> {
                   width: mWidth * 0.4,
                   child: AppBtn(
                     onTap: () {
-                      quitQuiz(context);
+                      quizzes.quitQuiz(context);
                     },
                     color: whiteColor,
                     child: AppText(
@@ -137,7 +136,7 @@ class _QuizViewState extends State<QuizView> {
                         child: AppBtn(
                           onTap: quizzes.selectedAnswer != null
                               ? () =>
-                                  quizzes.goToNextQuestion(selectedQuiz.length)
+                                  quizzes.goToNextQuestion(selected.question)
                               : null,
                           color: kcSplashColor,
                           child: AppText(

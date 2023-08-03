@@ -231,22 +231,29 @@ class QuizQuestions with ChangeNotifier {
   }
 
   int? selectedAnswer;
+  bool isAnswerCorrect = false;
   int questionIndex = 0;
+  int questionNumber = 1;
   int score = 0;
 
-  void pickAnswer(int value) {
+  void pickAnswer(int value, List<QuizList> mQuestionList) {
     selectedAnswer = value;
-    final appQuiz = quizQuestion[questionIndex];
-    if (selectedAnswer == appQuiz.correctAnswer) {
+    isAnswerCorrect = value == mQuestionList[questionIndex].correctAnswer;
+    if (isAnswerCorrect) {
       score++;
     }
     notifyListeners();
   }
 
+  List<QuizList> getCurrentQuestion(String category){
+    var currentQuestion =  questions.where((element) => element.category == category).toList();
+    return currentQuestion;
+  }
+
   void goToNextQuestion(allQs) {
-    //if (questionIndex < quizQuestion.length - 1) {
     if (questionIndex != allQs) {
       questionIndex++;
+      questionNumber++;
       selectedAnswer = null;
     }
     notifyListeners();
@@ -256,6 +263,7 @@ class QuizQuestions with ChangeNotifier {
     selectedAnswer = null;
     score = 0;
     questionIndex = 0;
+    questionNumber = 1;
     Navigator.pushReplacement(
       context,
       CupertinoPageRoute(
@@ -298,6 +306,7 @@ class QuizQuestions with ChangeNotifier {
                   selectedAnswer = null;
                   score = 0;
                   questionIndex = 0;
+                  questionNumber = 1;
 
                   notifyListeners();
                 },

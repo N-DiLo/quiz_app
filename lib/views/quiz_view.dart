@@ -24,12 +24,12 @@ class _QuizViewState extends State<QuizView> {
     final quizzes = Provider.of<QuizQuestions>(context);
     var quizData = ModalRoute.of(context)!.settings.arguments as String;
 
-    final selected = quizzes.quizQuestion
-        .firstWhere((element) => element.category == quizData);
-//
+    final selected = quizzes.getCurrentQuestion(quizData);
+
     var selectedQuiz = quizzes.quizQuestion
         .where((quiz) => quiz.category == quizData)
         .toList();
+
 
     final mHeight = MediaQuery.of(context).size.height;
     final mWidth = MediaQuery.of(context).size.width;
@@ -42,7 +42,7 @@ class _QuizViewState extends State<QuizView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppText(
-              text: selected.category,
+              text: selected[quizzes.questionIndex].category,
               fontSize: 18,
               color: whiteColor,
               fontWeight: FontWeight.w600,
@@ -66,7 +66,7 @@ class _QuizViewState extends State<QuizView> {
             AppText(
               textAlign: TextAlign.center,
               text:
-                  '${'${qVModel.qstText}${quizzes.score}'} / ${selectedQuiz.length}',
+              '${'${qVModel.qstText}${quizzes.questionNumber}'} / ${selectedQuiz.length}',
               fontSize: 25,
               color: whiteColor,
               fontWeight: FontWeight.w700,
@@ -74,7 +74,7 @@ class _QuizViewState extends State<QuizView> {
             SizedBox(height: mHeight * 0.02),
             QuizText(
               textAlign: TextAlign.center,
-              text: selected.question,
+              text: selected[quizzes.questionIndex].question,
               fontSize: 20,
               color: whiteColor,
               fontWeight: FontWeight.w500,
@@ -83,16 +83,16 @@ class _QuizViewState extends State<QuizView> {
             ListView.builder(
               physics: const ScrollPhysics(parent: ClampingScrollPhysics()),
               shrinkWrap: true,
-              itemCount: selected.options.length,
+              itemCount: selected[quizzes.questionIndex].options.length,
               itemBuilder: (context, index) => GestureDetector(
                 onTap: quizzes.selectedAnswer == null
-                    ? () => quizzes.pickAnswer(index)
+                    ? () => quizzes.pickAnswer(index, selected)
                     : null,
                 child: QuizAnswers(
-                    answer: selected.options[index],
+                    answer: selected[quizzes.questionIndex].options[index],
                     isPicked: quizzes.selectedAnswer == index,
                     currentIndex: index,
-                    correctAnswer: selected.correctAnswer,
+                    correctAnswer: selected[quizzes.questionIndex].correctAnswer,
                     selectedAnswer: quizzes.selectedAnswer),
               ),
             ),
@@ -119,34 +119,34 @@ class _QuizViewState extends State<QuizView> {
                 ),
                 quizzes.questionIndex == selectedQuiz.length - 1
                     ? SizedBox(
-                        width: mWidth * 0.4,
-                        child: AppBtn(
-                          color: kcSplashColor,
-                          onTap: () => finishQuiz(context, quizzes.score),
-                          child: AppText(
-                            text: qVModel.appLstQuz,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18,
-                            color: whiteColor,
-                          ),
-                        ),
-                      )
+                  width: mWidth * 0.4,
+                  child: AppBtn(
+                    color: kcSplashColor,
+                    onTap: () => finishQuiz(context, quizzes.score),
+                    child: AppText(
+                      text: qVModel.appLstQuz,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18,
+                      color: whiteColor,
+                    ),
+                  ),
+                )
                     : SizedBox(
-                        width: mWidth * 0.4,
-                        child: AppBtn(
-                          onTap: quizzes.selectedAnswer != null
-                              ? () =>
-                                  quizzes.goToNextQuestion(selected.question)
-                              : null,
-                          color: kcSplashColor,
-                          child: AppText(
-                            text: qVModel.appBtnNxt,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18,
-                            color: whiteColor,
-                          ),
-                        ),
-                      ),
+                  width: mWidth * 0.4,
+                  child: AppBtn(
+                    onTap: quizzes.selectedAnswer != null
+                        ? () =>
+                        quizzes.goToNextQuestion(selected[quizzes.questionIndex].question)
+                        : null,
+                    color: kcSplashColor,
+                    child: AppText(
+                      text: qVModel.appBtnNxt,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18,
+                      color: whiteColor,
+                    ),
+                  ),
+                ),
               ],
             )
           ],

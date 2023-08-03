@@ -69,7 +69,7 @@ class QuizQuestions with ChangeNotifier {
       ],
     ),
     QuizList(
-      question: 'Jesus rose on the __________ day?',
+      question: 'Jesus rose on the __________ day',
       category: 'Bible Quiz',
       correctAnswer: 1,
       catImage: bibleCategory,
@@ -245,8 +245,9 @@ class QuizQuestions with ChangeNotifier {
     notifyListeners();
   }
 
-  List<QuizList> getCurrentQuestion(String category){
-    var currentQuestion =  questions.where((element) => element.category == category).toList();
+  List<QuizList> getCurrentQuestion(String category) {
+    var currentQuestion =
+        questions.where((element) => element.category == category).toList();
     return currentQuestion;
   }
 
